@@ -19,7 +19,7 @@ const jsx = (
   </Provider>
 );
 
-console.log("NODE_ENV", process.env.FIREBASE_DATABASE_URL)
+console.log("NODE_ENV", process.env.NODE_ENV)
 
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
