@@ -18,3 +18,29 @@ button:disabled {
 .is-active {
   font-weight: bold;
 }
+
+
+.form_head{
+  // text-align: center;
+  margin: 30px 0 0 90px;
+}
+
+.user{
+  display: flex;
+  flex-direction: column;
+}
+
+.form{
+  margin: 15px 0 0 15px;
+  // text-align: center;
+display: flex;
+justify-content: space-between;
+max-width: 50%;
+}
+
+table{
+  border-collapse: collapse;
+}
+table, td{
+  border: 1px solid black;;
+}
