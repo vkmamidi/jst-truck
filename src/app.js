@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { startSetExpenses } from './actions/expenses';
+import { startSetExpenses, startSetDetails } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css';
@@ -23,6 +23,6 @@ console.log("NODE_ENV", process.env.NODE_ENV)
 
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
-store.dispatch(startSetExpenses()).then(() => {
+store.dispatch(startSetDetails()).then(() => {
   ReactDOM.render(jsx, document.getElementById('app'));
 });
