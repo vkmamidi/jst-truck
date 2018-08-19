@@ -33,8 +33,8 @@ const addDetails = (detail)=>({
 
 const startAddDetails = (detailsData={})=>{
   return(dispatch)=>{
-      const {name = '', company='DBA', phone = 0, mcnum='',user='',password='', createdAt = 0, address='', email='', notes = '',ssn='',nmwdt='',federalId = '',kyu='', irp='',nyhut = '',usdot = '', origon='',usdotpin = '', canumber = '', ifta='',requester = '', numberoftrucks=''} = detailsData;
-      const detail = {name , company, phone, mcnum,user,password, createdAt, address, email, notes ,ssn,nmwdt,federalId,kyu, irp,nyhut ,usdot , origon,usdotpin, canumber, ifta,requester, numberoftrucks}
+      const {ana='',aea='',plates='',name = '', company='DBA', phone = 0, mcnum='',user='',password='', createdAt = 0, address='', email='', notes = '',ssn='',nmwdt='',federalId = '',kyu='', irp='',nyhut = '',usdot = '', origon='',usdotpin = '', canumber = '', ifta='',requester = '', numberoftrucks=''} = detailsData;
+      const detail = {ana,aea,plates,name , company, phone, mcnum,user,password, createdAt, address, email, notes ,ssn,nmwdt,federalId,kyu, irp,nyhut ,usdot , origon,usdotpin, canumber, ifta,requester, numberoftrucks}
   
   database.ref('details').push(detail).then((ref)=>{
       dispatch(addDetails({

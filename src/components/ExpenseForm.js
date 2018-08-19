@@ -7,6 +7,9 @@ export default class ExpenseForm extends React.Component {
     super(props);
 
     this.state = {
+      ana:props.expense ? props.expense.ana:'',
+      aea:props.expense ? props.expense.aea:'',
+      plates:props.expense ? props.expense.plates:'',
       name:props.expense ? props.expense.name:'',
             company:props.expense ? props.expense.company:'DBA',
             phone:props.expense ? props.expense.phone:'',
@@ -133,6 +136,19 @@ onTruckChange = (e)=>{
   this.setState(()=>({numberoftrucks}))
 }
 
+onAeaChange = (e)=>{
+  const aea = e.target.value
+  this.setState(()=>({aea}))
+}
+onPlatesChange = (e)=>{
+  const plates = e.target.value
+  this.setState(()=>({plates}))
+}
+
+onAnaChange = (e)=>{
+  const ana = e.target.value
+  this.setState(()=>({ana}))
+}
 
 
 
@@ -169,6 +185,9 @@ onTruckChange = (e)=>{
     } else {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
+        ana:this.state.ana,
+        aea:this.state.aea,
+        plates:this.state.plates,
         name:this.state.name,
         phone:this.state.phone,
         createdAt:this.state.createdAt.valueOf(),
@@ -206,9 +225,9 @@ onTruckChange = (e)=>{
       // Details
       <div>
             <form  className='form_head' onSubmit = {this.onSubmit}>
-            <input type='text' placeholder='ANA'/>
-            <input type = 'text' placeholder='AEA'/>
-            <input type = 'text' placeholder='Plates Only'/>
+            <input type='text' value={this.state.ana} onChange={this.onAnaChange} placeholder='ANA'/>
+            <input type = 'text' value={this.state.aea} onChange = {this.onAeaChange} placeholder='AEA'/>
+            <input type = 'text' value={this.state.plates} onChange = {this.onPlatesChange} placeholder='Plates Only'/>
             <div className='form'>
             <label>
             Name:

@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import AppRouter from './routers/AppRouter';
+import {AppRouter,history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { startSetExpenses, startSetDetails } from './actions/expenses';
-import { setTextFilter } from './actions/filters';
+import { login,logout } from './actions/auth';
 import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import './firebase/firebase';
-
+import {firebase} from './firebase/firebase'
 const store = configureStore();
 
 const jsx = (
@@ -18,11 +18,30 @@ const jsx = (
     <AppRouter />
   </Provider>
 );
+let hasRendered = false;
+const RenderApp = ()=>{
+  ReactDOM.render(jsx, document.getElementById('app'));
+  hasRendered = true
+}
 
+firebase.auth().onAuthStateChanged((user)=>{
+  if(user){
+    store.dispatch(login(user.uid))
+    store.dispatch(startSetDetails()).then(() => {
+      RenderApp();
+      if(history.location.pathname==='/'){
+        history.push('/dashboard')
+      }
+    });
+  }
+  else{
+    store.dispatch(logout())
+    RenderApp()
+    history.push('/')
+  }
+})
 console.log("NODE_ENV", process.env.NODE_ENV)
 
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
-store.dispatch(startSetDetails()).then(() => {
-  ReactDOM.render(jsx, document.getElementById('app'));
-});
+
