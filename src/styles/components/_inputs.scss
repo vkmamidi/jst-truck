@@ -6,11 +6,31 @@
     font-weight: 300;
 }
 
+.text-input__card{
+    width: 100px;
+}
+
 .select{
     @extend .text-input;
     
 }
-
+.select__add{
+    @extend .text-input;
+    width: 226px;
+    
+}
 .textarea{
     @extend .text-input;
+    width: 226px;
+}
+
+.text{
+    margin-right: $s-size;
+    // display: flex;
+    // flex-direction: column;
+    // margin-bottom : $s-size;
+    // @media(min-width: $desktop-breakpoint){
+    //     flex-direction: row;
+    //     margin-bottom: $s-size;
+    // }
 }

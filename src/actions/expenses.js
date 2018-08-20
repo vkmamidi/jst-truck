@@ -11,8 +11,8 @@ const addDetails = (detail)=>({
 const startAddDetails = (detailsData={})=>{
   return(dispatch,getState)=>{
       const uid = getState().auth.uid
-      const {ana='',aea='',plates='',name = '', company='DBA', phone = 0, mcnum='',user='',password='', createdAt = 0, address='', email='', notes = '',ssn='',nmwdt='',federalId = '',kyu='', irp='',nyhut = '',usdot = '', origon='',usdotpin = '', canumber = '', ifta='',requester = '', numberoftrucks=''} = detailsData;
-      const detail = {ana,aea,plates,name , company, phone, mcnum,user,password, createdAt, address, email, notes ,ssn,nmwdt,federalId,kyu, irp,nyhut ,usdot , origon,usdotpin, canumber, ifta,requester, numberoftrucks}
+      const {ana='',aea='',plates='',cardtype='',cardname='',cardnum='',account='',routing='',exp='',cvv='',bank='',name = '', company='DBA', phone = 0, mcnum='',user='',password='', createdAt = 0, address='', email='', notes = '',ssn='',nmwdt='',federalId = '',kyu='', irp='',nyhut = '',usdot = '', origon='',usdotpin = '', canumber = '', ifta='',requester = '', numberoftrucks=''} = detailsData;
+      const detail = {cardtype, cardname, cardnum, account, routing,exp,cvv,bank ,ana,aea,plates,name , company, phone, mcnum,user,password, createdAt, address, email, notes ,ssn,nmwdt,federalId,kyu, irp,nyhut ,usdot , origon,usdotpin, canumber, ifta,requester, numberoftrucks}
   
   database.ref(`users/${uid}/details`).push(detail).then((ref)=>{
       dispatch(addDetails({
