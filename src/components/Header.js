@@ -4,12 +4,17 @@ import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 
 export const Header = (props) => (
-  <header>
-    <h1>Carrier Information Sheet</h1>
-    <NavLink to="/dashboard" activeClassName="is-active">Dashboard</NavLink>
-    <NavLink to="/create" activeClassName="is-active">Create Details</NavLink>
-    <button onClick={props.startLogout}>LogOut</button>
-  </header>
+  <header className='header'>
+  <div className='content-container'>
+  <div className='header__content'>
+    <NavLink className="header__title" to="/dashboard">
+    <h1>JST TRUCK PERMITS</h1>
+    </NavLink>
+    <button className="button button__logout" onClick={props.startLogout}>Logout</button>
+    </div>
+    </div>
+  
+    </header>
 );
 
 const mapDispatchToProps = (dispatch)=>({
@@ -17,3 +22,5 @@ const mapDispatchToProps = (dispatch)=>({
 })
 
 export default connect(undefined,mapDispatchToProps)(Header);
+
+// <NavLink to="/create" activeClassName="is-active">Create Details</NavLink>

@@ -1,0 +1,15 @@
+.button{
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: white;
+    display: inline-block;
+    border: none;
+    background:$blue;
+    line-height: 1;
+    padding: $s-size;
+    text-decoration: none;
+}
+
+.button__logout{
+    background: none;
+}

@@ -194,17 +194,17 @@ onAnaChange = (e)=>{
       // Details
       <div>
             <form  className='form_head' onSubmit = {this.onSubmit}>
-            <input type='text' value={this.state.ana} onChange={this.onAnaChange} placeholder='ANA'/>
-            <input type = 'text' value={this.state.aea} onChange = {this.onAeaChange} placeholder='AEA'/>
-            <input type = 'text' value={this.state.plates} onChange = {this.onPlatesChange} placeholder='Plates Only'/>
+            <input className="text-input" type='text' value={this.state.ana} onChange={this.onAnaChange} placeholder='ANA'/>
+            <input className="text-input" type = 'text' value={this.state.aea} onChange = {this.onAeaChange} placeholder='AEA'/>
+            <input className="text-input" type = 'text' value={this.state.plates} onChange = {this.onPlatesChange} placeholder='Plates Only'/>
             <div className='form'>
             <label>
             Name:
-            <input type='text' value={this.state.name} onChange ={this.onNameChange} autoFocus />
+            <input className="text-input" type='text' value={this.state.name} onChange ={this.onNameChange} autoFocus />
             </label>
             <label>
-            Select company
-            <select value = {this.state.company} onChange={this.onCompanyChange}>
+            Company:
+            <select className="select" value = {this.state.company} onChange={this.onCompanyChange}>
             <option value='DBA' >DBA</option>
             <option value='INC' >INC</option>
             <option value='LLC' >LLC</option>
@@ -214,7 +214,7 @@ onAnaChange = (e)=>{
             <div className='form'>
             <label>
             Phone:
-            <input type='number' value={this.state.phone} onChange ={this.onPhoneChange}/>
+            <input className="text-input" type='number' value={this.state.phone} onChange ={this.onPhoneChange}/>
             </label>
             <label>
             Address:
@@ -224,7 +224,7 @@ onAnaChange = (e)=>{
             <div className='form'>
             <label>
             EMAIL:
-            <input type='email' value={this.state.email} onChange ={this.onEmailChange}/>
+            <input className="text-input" type='email' value={this.state.email} onChange ={this.onEmailChange}/>
             </label>
             <label>
             Notes:
@@ -234,81 +234,81 @@ onAnaChange = (e)=>{
             <div className='form'>
             <label>
             SSN:
-            <input type='text' value={this.state.ssn} onChange ={this.onSsnChange}/>
+            <input className="text-input" type='text' value={this.state.ssn} onChange ={this.onSsnChange}/>
             </label>
             <label>
             NM WDT#:
-            <input type='text' value={this.state.nmwdt} onChange ={this.onNMChange}/>
+            <input className="text-input" type='text' value={this.state.nmwdt} onChange ={this.onNMChange}/>
             </label>
             </div>
             <div className='form'>
             <label>
             Federal Tax Id:
-            <input type='text' value={this.state.federalId} onChange ={this.onFederalChange}/>
+            <input className="text-input" type='text' value={this.state.federalId} onChange ={this.onFederalChange}/>
             </label>
             <label>
             KYU #:
-            <input type='text' value={this.state.kyu} onChange ={this.onKYUChange}/>
+            <input className="text-input" type='text' value={this.state.kyu} onChange ={this.onKYUChange}/>
             </label>
             </div>
             <div className='form'>
             <label>
             IRP/MM/DD
-            <input type='text' value={this.state.irp} onChange = {this.onIrpChange}/>
+            <input className="text-input" type='text' value={this.state.irp} onChange = {this.onIrpChange}/>
             </label>
             <div className='user'>
             <label>
             NY HUT#
-            <input type='text' value={this.state.nyhut} onChange ={this.onNYChange}/>
+            <input className="text-input" type='text' value={this.state.nyhut} onChange ={this.onNYChange}/>
             </label>
             <label>
             User:
-            <input type='text' value={this.state.user} onChange ={this.onUserChange}/>
+            <input className="text-input" type='text' value={this.state.user} onChange ={this.onUserChange}/>
             </label>
             <label>
             Password:
-            <input type='text' value={this.state.password} onChange ={this.onPasswordChange}/>
+            <input className="text-input" type='text' value={this.state.password} onChange ={this.onPasswordChange}/>
             </label>
             </div>
             </div>
             <div className='form'>
             <label>
             USDOT:
-            <input type='text' value={this.state.usdot} onChange ={this.onUsdotChange}/>
+            <input className="text-input" type='text' value={this.state.usdot} onChange ={this.onUsdotChange}/>
             </label>
             <label>
             MC#:
-            <input type='text' value={this.state.mcnum} onChange ={this.onMcnumChange}/>
+            <input className="text-input" type='text' value={this.state.mcnum} onChange ={this.onMcnumChange}/>
             </label>
             </div>
             <div className='form'>
             <label>
             ORIGON #:
-            <input type='text' value={this.state.origon} onChange ={this.onOrigonChange}/>
+            <input className="text-input" type='text' value={this.state.origon} onChange ={this.onOrigonChange}/>
             </label>
             <label>
             USDOT Pin:
-            <input type='text' value={this.state.usdotpin} onChange ={this.onPinChange}/>
+            <input className="text-input" type='text' value={this.state.usdotpin} onChange ={this.onPinChange}/>
             </label>
             </div>
             <div className='form'>
             <label>
             CA Number:
-            <input type='text' value={this.state.canumber} onChange ={this.onCaChange}/>
+            <input className="text-input" type='text' value={this.state.canumber} onChange ={this.onCaChange}/>
             </label>
             <label>
             IFTA CA#:
-            <input type='text' value={this.state.ifta} onChange ={this.onIFTAChange}/>
+            <input className="text-input" type='text' value={this.state.ifta} onChange ={this.onIFTAChange}/>
             </label>
             </div>
             <div className='form'>
             <label>
             Requester Code:
-            <input type='text' value={this.state.requester} onChange ={this.onRequesterChange}/>
+            <input className="text-input" type='text' value={this.state.requester} onChange ={this.onRequesterChange}/>
             </label>
             <label>
             Number of trucks:
-            <input type='text' value={this.state.numberoftrucks} onChange ={this.onTruckChange}/>
+            <input className="text-input" type='text' value={this.state.numberoftrucks} onChange ={this.onTruckChange}/>
             </label>
             </div>
             {this.props.expense ? <button>Update Details</button> : <button>Add Details</button>} 

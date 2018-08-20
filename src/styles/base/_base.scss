@@ -2,9 +2,15 @@ html {
   font-size: 62.5%;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 body {
+  color: $dark-grey;
   font-family: Helvetica, Arial, sans-serif;
   font-size: $m-size;
+  line-height: 1.6;
 }
 
 button {
@@ -31,11 +37,11 @@ button:disabled {
 }
 
 .form{
-  margin: 15px 0 0 15px;
-  // text-align: center;
+  // border: 1px solid black;
+  margin: 0 0 0 15px;
+  padding: $m-size;
 display: flex;
 justify-content: space-between;
-max-width: 50%;
 }
 
 table{
