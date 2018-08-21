@@ -183,6 +183,15 @@ onExpChange = (e)=>{
   const exp = e.target.value
   this.setState(()=>({exp}))
 }
+onDateChange = (createdAt) => {
+  if (createdAt) {
+    this.setState(() => ({ createdAt }));
+  }
+};
+onFocusChange = ({ focused }) => {
+  this.setState(() => ({ calendarFocused: focused }));
+};
+
 
 
 
@@ -245,6 +254,15 @@ onExpChange = (e)=>{
             <input className="text text-input" type='text' value={this.state.ana} onChange={this.onAnaChange} placeholder='ANA'/>
             <input className="text text-input" type = 'text' value={this.state.aea} onChange = {this.onAeaChange} placeholder='AEA'/>
             <input className="text text-input" type = 'text' value={this.state.plates} onChange = {this.onPlatesChange} placeholder='Plates Only'/>
+            <SingleDatePicker
+          date={this.state.createdAt}
+          onDateChange={this.onDateChange}
+          focused={this.state.calendarFocused}
+          onFocusChange={this.onFocusChange}
+          numberOfMonths={1}
+          isOutsideRange={() => false}
+        />
+
             <div className='form'>
             <div>
             <label>
