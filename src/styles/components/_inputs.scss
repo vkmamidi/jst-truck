@@ -23,6 +23,15 @@
     @extend .text-input;
     width: 226px;
 }
+.textarea__notes{
+    @extend .text-input;
+    width: auto;
+    height: 105px;
+    @media(min-width: $desktop-breakpoint){
+        width: 868px;
+        height: 105px;
+        }
+}
 
 .text{
     margin-right: $s-size;

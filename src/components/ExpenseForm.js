@@ -240,7 +240,7 @@ onExpChange = (e)=>{
     return (
 
       // Details
-      <div>
+      <div className='content-container'>
             <form  className='form_head' onSubmit = {this.onSubmit}>
             <input className="text text-input" type='text' value={this.state.ana} onChange={this.onAnaChange} placeholder='ANA'/>
             <input className="text text-input" type = 'text' value={this.state.aea} onChange = {this.onAeaChange} placeholder='AEA'/>
@@ -281,18 +281,15 @@ onExpChange = (e)=>{
             <br/>
             <input className="text-input" type='email' value={this.state.email} onChange ={this.onEmailChange}/>
             </label>
-            <label>
-            Notes:
-            <br/>
-            <textarea className='textarea' value={this.state.notes} onChange ={this.onNotesChange}/>
-            </label>
-            </div>
-            <div className='form'>
+            
+            
             <label>
             SSN:
             <br/>
             <input className="text-input" type='text' value={this.state.ssn} onChange ={this.onSsnChange}/>
             </label>
+            </div>
+            <div className='form'>
             <label>
             NM WDT#:
             <br/>
@@ -303,13 +300,14 @@ onExpChange = (e)=>{
             <br/>
             <input className="text-input" type='text' value={this.state.federalId} onChange ={this.onFederalChange}/>
             </label>
-            </div>
-            <div className='form'>
+            
             <label>
             KYU #:
             <br/>
             <input className="text-input" type='text' value={this.state.kyu} onChange ={this.onKYUChange}/>
             </label>
+            </div>
+            <div className='form'>
             <label>
             IRP/MM/DD
             <br/>
@@ -332,8 +330,7 @@ onExpChange = (e)=>{
             <input className="text-input" type='text' value={this.state.password} onChange ={this.onPasswordChange}/>
             </label>
             </div>
-            </div>
-            <div className='form'>
+            <div className='user'>
             <label>
             USDOT:
             <br/>
@@ -344,13 +341,15 @@ onExpChange = (e)=>{
             <br/>
             <input className="text-input" type='text' value={this.state.mcnum} onChange ={this.onMcnumChange}/>
             </label>
+            </div>
+            </div>
+            <div className='form'>
             <label>
             ORIGON #:
             <br/>
             <input className="text-input" type='text' value={this.state.origon} onChange ={this.onOrigonChange}/>
             </label>
-            </div>
-            <div className='form'>
+            
             <label>
             USDOT Pin:
             <br/>
@@ -361,13 +360,14 @@ onExpChange = (e)=>{
             <br/>
             <input className="text-input" type='text' value={this.state.canumber} onChange ={this.onCaChange}/>
             </label>
+            </div>
+            <div className='form'>
             <label>
             IFTA CA#:
             <br/>
             <input className="text-input" type='text' value={this.state.ifta} onChange ={this.onIFTAChange}/>
             </label>
-            </div>
-            <div className='form'>
+            
             <label>
             Requester Code:
             <br/>
@@ -427,6 +427,13 @@ onExpChange = (e)=>{
             </div>
             </div>
             </div>
+            <div>
+             <label>
+              Notes:
+             <br/>
+             <textarea className='textarea__notes' value={this.state.notes} onChange ={this.onNotesChange}/>
+             </label>
+            </div>
             {this.props.expense ? <button className='button'>Update Details</button> : <button className='button'>Add Details</button>} 
             </form>
             </div>
@@ -435,3 +442,4 @@ onExpChange = (e)=>{
     )
   }
 }
+

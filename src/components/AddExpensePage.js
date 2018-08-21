@@ -10,9 +10,13 @@ export class AddExpensePage extends React.Component {
   };
   render() {
     return (
-      <div className='content-container'>
-        <h1>Carrier Information Sheet</h1>
-        <ExpenseForm
+      <div>
+      <div className='page-header'>
+      <div className='content-container'>  
+      <h1>Carrier Information Sheet</h1>
+      </div>  
+      </div>
+      <ExpenseForm
           onSubmit={this.onSubmit}
         />
       </div>
