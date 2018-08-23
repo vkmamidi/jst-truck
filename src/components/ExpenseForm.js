@@ -1,17 +1,18 @@
 import React from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
+import {firebase} from 'firebase';
 
 export default class ExpenseForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      ana:props.expense ? props.expense.ana:'',
-      aea:props.expense ? props.expense.aea:'',
-      plates:props.expense ? props.expense.plates:'',
+      ana:props.expense ? props.expense.ana:'Ana',
       name:props.expense ? props.expense.name:'',
-            company:props.expense ? props.expense.company:'DBA',
+      capoa:props.expense ? props.expense.capoa:'',
+      nmpoa:props.expense ? props.expense.nmpoa:'',
+            company:props.expense ? props.expense.company:'',
             phone:props.expense ? props.expense.phone:'',
             createdAt:props.expense ? moment(props.expense.createdAt):moment(),
             address:props.expense ? props.expense.address:'',
@@ -138,13 +139,13 @@ onTruckChange = (e)=>{
   this.setState(()=>({numberoftrucks}))
 }
 
-onAeaChange = (e)=>{
-  const aea = e.target.value
-  this.setState(()=>({aea}))
+onCapoaChange = (e)=>{
+  const capoa = e.target.value
+  this.setState(()=>({capoa}))
 }
-onPlatesChange = (e)=>{
-  const plates = e.target.value
-  this.setState(()=>({plates}))
+onNmpoaChange = (e)=>{
+  const nmpoa = e.target.value
+  this.setState(()=>({nmpoa}))
 }
 
 onAnaChange = (e)=>{
@@ -207,10 +208,10 @@ onFocusChange = ({ focused }) => {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
         ana:this.state.ana,
-        aea:this.state.aea,
-        plates:this.state.plates,
         name:this.state.name,
         phone:this.state.phone,
+        nmpoa:this.state.nmpoa,
+        capoa:this.state.capoa,
         createdAt:this.state.createdAt.valueOf(),
         address:this.state.address,
         notes:this.state.notes,
@@ -251,9 +252,13 @@ onFocusChange = ({ focused }) => {
       // Details
       <div className='content-container'>
             <form  className='form_head' onSubmit = {this.onSubmit}>
-            <input className="text text-input" type='text' value={this.state.ana} onChange={this.onAnaChange} placeholder='ANA'/>
-            <input className="text text-input" type = 'text' value={this.state.aea} onChange = {this.onAeaChange} placeholder='AEA'/>
-            <input className="text text-input" type = 'text' value={this.state.plates} onChange = {this.onPlatesChange} placeholder='Plates Only'/>
+            <label>
+            <select className="select__add" value = {this.state.ana} onChange={this.onAnaChange}>
+            <option value='Ana' >ANA</option>
+            <option value='Aea' >AEA</option>
+            <option value='PlatesOnly' >Plates Only</option>
+            </select>
+            </label>
             <SingleDatePicker
           date={this.state.createdAt}
           onDateChange={this.onDateChange}
@@ -262,6 +267,7 @@ onFocusChange = ({ focused }) => {
           numberOfMonths={1}
           isOutsideRange={() => false}
         />
+        
 
             <div className='form'>
             <div>
@@ -273,13 +279,9 @@ onFocusChange = ({ focused }) => {
             </div>
             <div>
             <label>
-            Company:
+            Company Name:
             <br/>
-            <select className="select__add" value = {this.state.company} onChange={this.onCompanyChange}>
-            <option value='DBA' >DBA</option>
-            <option value='INC' >INC</option>
-            <option value='LLC' >LLC</option>
-            </select>
+            <input className="text-input" type='text' value={this.state.company} onChange ={this.onCompanyChange}/>
             </label>
             </div>
             <label>
@@ -299,8 +301,6 @@ onFocusChange = ({ focused }) => {
             <br/>
             <input className="text-input" type='email' value={this.state.email} onChange ={this.onEmailChange}/>
             </label>
-            
-            
             <label>
             SSN:
             <br/>
@@ -326,14 +326,26 @@ onFocusChange = ({ focused }) => {
             </label>
             </div>
             <div className='form'>
+            <div className='user'>
             <label>
             IRP/MM/DD
             <br/>
             <input className="text-input" type='text' value={this.state.irp} onChange = {this.onIrpChange}/>
             </label>
+            <label>
+            CA POA
+            <br/>
+            <input className="text-input" type='text' value={this.state.capoa} onChange = {this.onCapoaChange}/>
+            </label>
+            <label>
+            NM POA
+            <br/>
+            <input className="text-input" type='text' value={this.state.nmpoa} onChange = {this.onNmpoaChange}/>
+            </label>
+            </div>
             <div className='user'>
             <label>
-            NY HUT#
+            NY Oscar
             <br/>
             <input className="text-input" type='text' value={this.state.nyhut} onChange ={this.onNYChange}/>
             </label>
@@ -461,3 +473,5 @@ onFocusChange = ({ focused }) => {
   }
 }
 
+
+// <input type='file' id='file-name'/>
