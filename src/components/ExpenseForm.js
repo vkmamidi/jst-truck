@@ -231,7 +231,7 @@ componentDidMount(){
   onSubmit = (e) => {
     e.preventDefault();
 
-    if (!this.state.name || !this.state.phone) {
+    if (!this.state.name) {
       this.setState(() => ({ error: 'Please provide description and amount.' }));
     } else {
       this.setState(() => ({ error: '' }));

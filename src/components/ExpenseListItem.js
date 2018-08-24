@@ -8,7 +8,6 @@ const ExpenseListItem = (props) => (
   
   <NavLink className='list-item' to={`/edit/${props.id}`}>
   <h4 className='list-item__title'>{props.name}</h4>
-  <p>{props.phone}</p>
   <p>{props.email}</p>
   </NavLink>
    
