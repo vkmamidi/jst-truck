@@ -1,13 +1,19 @@
 import React from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
-import {firebase} from 'firebase';
+import firebase from 'firebase';
+import FileUploader from 'react-firebase-file-uploader';
 
 export default class ExpenseForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      img:'',
+      avatar:'',
+      isUploading:false,
+      progress:0,
+      avatarURL:'',
       ana:props.expense ? props.expense.ana:'Ana',
       name:props.expense ? props.expense.name:'',
       capoa:props.expense ? props.expense.capoa:'',
@@ -189,12 +195,35 @@ onDateChange = (createdAt) => {
     this.setState(() => ({ createdAt }));
   }
 };
+
+handleUploadStart = () => this.setState({isUploading: true, progress: 0});
+handleProgress = (progress) => this.setState({progress});
+handleUploadError = (error) => {
+this.setState({isUploading: false});
+}
+handleUploadSuccess = (filename) => {
+  this.setState({avatar: filename, progress: 100, isUploading: false});
+  firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({avatarURL: url}));
+}
+
 onFocusChange = ({ focused }) => {
   this.setState(() => ({ calendarFocused: focused }));
 };
 
+onFileChange =(e)=>{
+  let file = e.target.files[0]
+  console.log(file)
+  firebase.storage().ref().child(`files/${this.state.company}`).put(file).then((snapshot)=>{
+    console.log("file uploaded")
+  })
+  
+}
 
-
+componentDidMount(){
+  let filename = firebase.storage().ref().child(`files/${this.state.company}`);
+  filename.getDownloadURL().then((url)=>{this.setState(()=>({img:url}))})
+  console.log(this.state.img)
+}
 
 
   // expenses
@@ -252,6 +281,7 @@ onFocusChange = ({ focused }) => {
       // Details
       <div className='content-container'>
             <form  className='form_head' onSubmit = {this.onSubmit}>
+            <div className='form'>
             <label>
             <select className="select__add" value = {this.state.ana} onChange={this.onAnaChange}>
             <option value='Ana' >ANA</option>
@@ -268,7 +298,8 @@ onFocusChange = ({ focused }) => {
           isOutsideRange={() => false}
         />
         
-
+        {this.props.expense ?(<label><a href={this.state.img} download>Your file</a> <input className = 'button button__logout' type='file' onChange={this.onFileChange} id='file-name'/></label>) : <input className='button button__logout' type='file' onChange={this.onFileChange} id='file-name' multiple/> }
+        </div>
             <div className='form'>
             <div>
             <label>
@@ -299,7 +330,7 @@ onFocusChange = ({ focused }) => {
             <label>
             EMAIL:
             <br/>
-            <input className="text-input" type='email' value={this.state.email} onChange ={this.onEmailChange}/>
+            <input className="text-input text-input__email" type='email' value={this.state.email} onChange ={this.onEmailChange}/>
             </label>
             <label>
             SSN:
@@ -474,4 +505,21 @@ onFocusChange = ({ focused }) => {
 }
 
 
-// <input type='file' id='file-name'/>
+
+// <label>Avatar:</label>
+// {this.state.isUploading &&
+// <p>Progress: {this.state.progress}</p>
+// }
+// {this.state.avatarURL &&
+// <img src={this.state.avatarURL} />
+// }
+// <FileUploader
+// accept="image/*"
+// name="avatar"
+// randomizeFilename
+// storageRef={firebase.storage().ref('images')}
+// onUploadStart={this.handleUploadStart}
+// onUploadError={this.handleUploadError}
+// onUploadSuccess={this.handleUploadSuccess}
+// onProgress={this.handleProgress}
+// />

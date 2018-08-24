@@ -2,15 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
 import { startAddDetails } from '../actions/expenses';
-import {firebase} from 'firebase';
+import {storage} from 'firebase';
 
 export class AddExpensePage extends React.Component {
   onSubmit = (expense) => {
     this.props.startAddDetails(expense)
     this.props.history.push('/');
     // var myfile = document.getElementById('file-name').files[0]
-    // const storageRef = firebase.storage().ref(`${props.auth}/files/`+myfile);
-    // storageRef.put(myfile)
+    // const storageRef = storage.ref();
+    // const metadata = {
+    //   contentType:myfile.type
+    // };
+    // storageRef.put(myfile,metadata).then((snapshot)=>{
+    //   console.log('uploaded file')
+    // })
 
   };
   render() {
@@ -22,6 +27,7 @@ export class AddExpensePage extends React.Component {
       </div>  
       </div>
       <ExpenseForm
+          authid={this.props.auth}
           onSubmit={this.onSubmit}
         />
       </div>
