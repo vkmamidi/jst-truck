@@ -31,8 +31,8 @@ app.post('/send', (req, res) => {
         host: "smtp.gmail.com",
         port: 587,
         auth: {
-        user: process.env.CONFIG_USER_NAME,
-        pass: process.env.CONFIG_PASSWORD
+        user: creds.USER,
+        pass: creds.PASS
         },
         tls: {
             rejectUnauthorized: false
@@ -41,7 +41,7 @@ app.post('/send', (req, res) => {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: process.env.CONFIG_USER_NAME, // sender address
+        from: creds.USER, // sender address
         to: `${req.body.email}`, // list of receivers
         subject: 'Reminder From JST Truck permits', // Subject line
         text: 'Postcard', // plain text body

@@ -13,6 +13,7 @@ import './firebase/firebase';
 import {firebase} from './firebase/firebase'
 import LoadingPage from './components/LoadingPage'
 
+const creds = require("../server/config");
 
 const store = configureStore();
 
@@ -46,6 +47,6 @@ firebase.auth().onAuthStateChanged((user)=>{
     history.push('/')
   }
 })
-console.log("NODE_ENV", process.env.CONFIG_USER_NAME, process.env.CONFIG_PASSWORD)
+console.log("NODE_ENV", creds.USER)
 
 
