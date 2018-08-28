@@ -312,7 +312,7 @@ componentDidMount(){
           numberOfMonths={1}
           isOutsideRange={() => false}
         />
-        {this.props.expense ? <button onClick={this.onEmailClick}>Send Email</button>: {}}
+        {this.props.expense ? <button onClick={this.onEmailClick}>Send Email</button>: <div></div> }
         {this.props.expense ?(<label><a href={this.state.img} download>Your file</a> <input className = 'button button__logout' type='file' onChange={this.onFileChange} id='file-name'/></label>) : <input className='button button__logout' type='file' onChange={this.onFileChange} id='file-name' multiple/> }
         </div>
             <div className='form'>
