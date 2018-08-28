@@ -4,7 +4,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require("nodemailer");
-const creds = require("./config.js");
+// const creds = require("./config.js");
 const app = express();
 const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3000;
@@ -31,8 +31,8 @@ app.post('/send', (req, res) => {
         host: "smtp.gmail.com",
         port: 587,
         auth: {
-        user: creds.USER,
-        pass: creds.PASS
+        user: process.env.CONFIG_USER_NAME,
+        pass: process.env.CONFIG_PASSWORD
         },
         tls: {
             rejectUnauthorized: false
@@ -41,7 +41,7 @@ app.post('/send', (req, res) => {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: creds.USER, // sender address
+        from: process.env.CONFIG_USER_NAME, // sender address
         to: `${req.body.email}`, // list of receivers
         subject: 'Reminder From JST Truck permits', // Subject line
         text: 'Postcard', // plain text body
