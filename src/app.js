@@ -13,6 +13,7 @@ import './firebase/firebase';
 import {firebase} from './firebase/firebase'
 import LoadingPage from './components/LoadingPage'
 
+
 const store = configureStore();
 
 const jsx = (

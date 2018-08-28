@@ -3,6 +3,9 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import firebase from 'firebase';
 import FileUploader from 'react-firebase-file-uploader';
+import Axios from '../../node_modules/axios';
+import axios from 'axios';
+
 
 export default class ExpenseForm extends React.Component {
   constructor(props) {
@@ -219,10 +222,21 @@ onFileChange =(e)=>{
   
 }
 
+onEmailClick = async()=>{
+  await axios.post("/send",{
+    email:this.props.expense.email,
+  }).then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error.response);
+  });
+}
+
 componentDidMount(){
   let filename = firebase.storage().ref().child(`files/${this.state.company}`);
   filename.getDownloadURL().then((url)=>{this.setState(()=>({img:url}))})
-  console.log(this.state.img)
+  // console.log(this.state.img)
 }
 
 
@@ -297,7 +311,7 @@ componentDidMount(){
           numberOfMonths={1}
           isOutsideRange={() => false}
         />
-        
+        {this.props.expense ? <button onClick={this.onEmailClick}>Send Email</button>: {}}
         {this.props.expense ?(<label><a href={this.state.img} download>Your file</a> <input className = 'button button__logout' type='file' onChange={this.onFileChange} id='file-name'/></label>) : <input className='button button__logout' type='file' onChange={this.onFileChange} id='file-name' multiple/> }
         </div>
             <div className='form'>
