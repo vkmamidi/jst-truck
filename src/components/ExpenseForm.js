@@ -222,7 +222,8 @@ onFileChange =(e)=>{
   
 }
 
-onEmailClick = async()=>{
+onEmailClick = async(e)=>{
+  
   await axios.post("/send",{
     email:this.props.expense.email,
   }).then(function (response) {
