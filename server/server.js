@@ -17,7 +17,7 @@ const nexmo = new Nexmo({
 var aws = require('aws-sdk');
 
 // load aws config
-aws.config.loadFromPath('config.json');
+// aws.config.loadFromPath('config.json');
 
 // load AWS SES
 var ses = new aws.SES({apiVersion: '2010-12-01'});
