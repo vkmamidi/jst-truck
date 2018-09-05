@@ -10,9 +10,12 @@ const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3000;
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
-  apiKey: process.env.CONFIG_APIKEY,
-  apiSecret: process.env.CONFIG_APISECRET
+    apiKey:'786655c2',
+    apiSecret:'1IiLtEpSMuVv8vf4'
 });
+//   apiKey: process.env.CONFIG_APIKEY,
+//   apiSecret: process.env.CONFIG_APISECRET
+
 // load aws sdk
 var aws = require('aws-sdk');
 

@@ -224,12 +224,19 @@ onFocusChange = ({ focused }) => {
 };
 
 onFileChange =(e)=>{
-  let file = e.target.files[0]
+    let file = e.target.files[0]
   console.log(file)
+    this.setState(()=>({error:''}))
   firebase.storage().ref().child(`files/${this.state.company}`).put(file).then((snapshot)=>{
     console.log("file uploaded")
   })
-  
+
+}
+
+onEmptyCompanyName = (e)=>{
+  if(this.state.company===''){
+    alert("enter company name before uploading files")
+  }
 }
 
 
@@ -317,7 +324,7 @@ componentDidMount(){
           isOutsideRange={() => false}
         />
       
-        {this.props.expense ?(<label><a href={this.state.img} download>Your file</a> <input className = 'button button__upload' type='file' onChange={this.onFileChange} id='file-name'/></label>) : <input className='button button__logout' type='file' onChange={this.onFileChange} id='file-name' multiple/> }
+        {this.props.expense ?(<label>{this.state.img && <a href={this.state.img} download>Your file</a>} <input onClick={this.onEmptyCompanyName} className = 'button button__upload' type='file' onChange={this.onFileChange} id='file-name'/></label>) : <input onClick={this.onEmptyCompanyName} className='button button__logout' type='file' onChange={this.onFileChange} id='file-name' multiple/> }
         </div>
             <div className='form'>
             <div>
