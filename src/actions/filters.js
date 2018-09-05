@@ -3,7 +3,10 @@ export const setTextFilter = (text = '') => ({
   type: 'SET_TEXT_FILTER',
   text
 });
-
+export const setIrpMonthFilter = (irpMonth = '')=>({
+  type: 'SORT_BY_IRPMONTH',
+  irpMonth
+})
 // SORT_BY_DATE
 export const sortByDate = () => ({
   type: 'SORT_BY_DATE'

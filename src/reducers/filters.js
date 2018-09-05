@@ -5,6 +5,7 @@ import moment from 'moment';
 const filtersReducerDefaultState = {
   text: '',
   sortBy: 'date',
+  irpMonth:'',
   startDate: moment().startOf('month'),
   endDate: moment().endOf('month')
 };
@@ -36,6 +37,12 @@ export default (state = filtersReducerDefaultState, action) => {
         ...state,
         endDate: action.endDate
       };
+
+      case 'SORT_BY_IRPMONTH':
+      return {
+        ...state,
+        irpMonth: action.irpMonth
+      }
     default:
       return state;
   }

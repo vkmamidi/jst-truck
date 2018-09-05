@@ -36,6 +36,16 @@ button:disabled {
   flex-direction: column;
 }
 
+.head{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.head__buttons{
+  margin: $m-size;
+}
+
 .form{
   // border: 1px solid black;
   // margin: 0 0 0 15px;
@@ -48,6 +58,21 @@ margin-bottom: $s-size;
 @media(min-width: $desktop-breakpoint){
       flex-direction: row;
       margin-bottom: $s-size;
+  }
+}
+
+.form__irp{
+  // border: 1px solid black;
+  // margin: 0 0 0 15px;
+  border:none;
+   padding: 0;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+margin:0;
+@media(min-width: $desktop-breakpoint){
+      flex-direction: row;
+      margin-bottom: 0;
   }
 }
 

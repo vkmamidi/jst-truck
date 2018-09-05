@@ -18,6 +18,8 @@ export default class ExpenseForm extends React.Component {
       progress:0,
       avatarURL:'',
       ana:props.expense ? props.expense.ana:'Ana',
+      mm:props.expense ? props.expense.mm:'',
+      yy:props.expense ? props.expense.yy:'',
       name:props.expense ? props.expense.name:'',
       capoa:props.expense ? props.expense.capoa:'',
       nmpoa:props.expense ? props.expense.nmpoa:'',
@@ -189,6 +191,14 @@ onCvvChange = (e)=>{
   const cvv = e.target.value
   this.setState(()=>({cvv}))
 }
+onMMChange = (e)=>{
+  const mm = e.target.value
+  this.setState(()=>({mm}))
+}
+onYYChange = (e)=>{
+  const yy = e.target.value
+  this.setState(()=>({yy}))
+}
 onExpChange = (e)=>{
   const exp = e.target.value
   this.setState(()=>({exp}))
@@ -222,17 +232,9 @@ onFileChange =(e)=>{
   
 }
 
-onEmailClick = async(e)=>{
-  
-  await axios.post("/send",{
-    email:this.props.expense.email,
-  }).then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error.response);
-  });
-}
+
+
+
 
 componentDidMount(){
   let filename = firebase.storage().ref().child(`files/${this.state.company}`);
@@ -253,6 +255,8 @@ componentDidMount(){
       this.props.onSubmit({
         ana:this.state.ana,
         name:this.state.name,
+        mm:this.state.mm,
+        yy:this.state.yy,
         phone:this.state.phone,
         nmpoa:this.state.nmpoa,
         capoa:this.state.capoa,
@@ -312,8 +316,8 @@ componentDidMount(){
           numberOfMonths={1}
           isOutsideRange={() => false}
         />
-        {this.props.expense ? <button onClick={this.onEmailClick}>Send Email</button>: <div></div> }
-        {this.props.expense ?(<label><a href={this.state.img} download>Your file</a> <input className = 'button button__logout' type='file' onChange={this.onFileChange} id='file-name'/></label>) : <input className='button button__logout' type='file' onChange={this.onFileChange} id='file-name' multiple/> }
+      
+        {this.props.expense ?(<label><a href={this.state.img} download>Your file</a> <input className = 'button button__upload' type='file' onChange={this.onFileChange} id='file-name'/></label>) : <input className='button button__logout' type='file' onChange={this.onFileChange} id='file-name' multiple/> }
         </div>
             <div className='form'>
             <div>
@@ -373,11 +377,23 @@ componentDidMount(){
             </div>
             <div className='form'>
             <div className='user'>
+            <div className='form__irp'>
             <label>
-            IRP/MM/DD
+            IRP
             <br/>
-            <input className="text-input" type='text' value={this.state.irp} onChange = {this.onIrpChange}/>
+            <input className="text-input text-input__card" type='text' value={this.state.irp} onChange = {this.onIrpChange}/>
             </label>
+            <label>
+            MM
+            <br/>
+            <input className="text-input text-input__date" type='text' value={this.state.mm} onChange = {this.onMMChange}/>
+            </label>
+            <label>
+            YY
+            <br/>
+            <input className="text-input text-input__date" type='text' value={this.state.yy} onChange = {this.onYYChange}/>
+            </label>
+            </div>
             <label>
             CA POA
             <br/>

@@ -47,6 +47,6 @@ firebase.auth().onAuthStateChanged((user)=>{
     history.push('/')
   }
 })
-console.log("NODE_ENV", creds.USER)
+console.log("NODE_ENV", process.env.CONFIG_USER_NAME)
 
 

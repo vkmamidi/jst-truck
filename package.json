@@ -13,6 +13,7 @@
     "heroku-postbuild": "npm run build:prod"
   },
   "dependencies": {
+    "aws-sdk": "^2.304.0",
     "axios": "^0.18.0",
     "babel-cli": "6.24.1",
     "babel-core": "6.25.0",
@@ -29,6 +30,7 @@
     "firebase": "4.2.0",
     "jquery": "^3.3.1",
     "moment": "2.18.1",
+    "nexmo": "^2.3.2",
     "next": "^6.1.1",
     "node-sass": "4.5.3",
     "nodemailer": "^4.6.8",

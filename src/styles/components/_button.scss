@@ -15,6 +15,21 @@
     background: none;
 }
 
+.button__link{
+    margin: $m-size;
+    margin-right: 500px;
+}
+.button__upload{
+    color: black;
+    background: none;
+}
+
+.button__sms{
+    margin-right: $s-size;
+    
+    margin-bottom: 0;
+}
+
 .button__remove{
     background: #888888;
 }

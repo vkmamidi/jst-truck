@@ -56,6 +56,9 @@ module.exports = (env) => {
         'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID),
         'process.env.CONFIG_USER_NAME': JSON.stringify(process.env.CONFIG_USER_NAME),
         'process.env.CONFIG_PASSWORD': JSON.stringify(process.env.CONFIG_PASSWORD),
+        'process.env.CONFIG_NUMBER': JSON.stringify(process.env.CONFIG_NUMBER),
+        'process.env.CONFIG_APIKEY': JSON.stringify(process.env.CONFIG_APIKEY),
+        'process.env.CONFIG_APISECRET': JSON.stringify(process.env.CONFIG_APISECRET),
       })
     ],
     devtool: isProduction ? 'source-map' : 'inline-source-map',

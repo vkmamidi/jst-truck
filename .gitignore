@@ -2,3 +2,4 @@ node_modules/
 server/config.js
 .env.test
 .env.development
+config.json
