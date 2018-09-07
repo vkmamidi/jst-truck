@@ -9,6 +9,7 @@ const app = express();
 const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3000;
 const Nexmo = require('nexmo');
+const xoauth2 = require('xoauth2');
 const nexmo = new Nexmo({
     apiKey:'786655c2',
     apiSecret:'1IiLtEpSMuVv8vf4'
@@ -73,7 +74,7 @@ app.post('/sendsms',(req,res)=>{
     for(let i =0;i<end;i++){
         setTimeout(()=>{
             nexmo.message.sendSms(
-                process.env.CONFIG_NUMBER,req.body.numbers[i],'yo',{type:'unicode'},
+                process.env.CONFIG_NUMBER,req.body.numbers[i],'This is a reminder from JST Truck permits. Your subscription for the plates is expiring soon, Please contact us to renew your plates',{type:'unicode'},
                 (err,responseData)=>{
                     if (err) {
                         console.log(err);
@@ -87,6 +88,38 @@ app.post('/sendsms',(req,res)=>{
 
     
 })
+
+// app.post('/send',(req,res)=>{
+//     var smtpTransport = nodemailer.createTransport({
+//         service: "Gmail",
+//         auth: {
+//           xoauth2: xoauth2.createXOAuth2Generator({
+//             user: "vkmamidi1410@gmail.com", // Your gmail address.
+//                                                   // Not @developer.gserviceaccount.com
+//             clientId: "716022677203-u0qhkdqn3003rot8p7q6tfsulnkq55fr.apps.googleusercontent.com",
+//             clientSecret: "r9dJqCeBM_p9OY-M-8SvwuEQ",
+//             refreshToken: "1/dbmBIdfHrMtkz6BcmSpcevgW1bW_--hVOtsGDI57HonDBSTuBa_ZbGp8IA_GZqCO"
+//           })
+//         }
+//       });
+      
+//       var mailOptions = {
+//         from: "vkmamidi1410@gmail.com",
+//         to: `${req.body.email}`,
+//         subject: "Hello",
+//         generateTextFromHTML: true,
+//         html: "<b>Hello world</b>"
+//       };
+      
+//       smtpTransport.sendMail(mailOptions, function(error, response) {
+//         if (error) {
+//           console.log(error);
+//         } else {
+//           console.log(response);
+//         }
+//         smtpTransport.close();
+//       });
+// })
 
 app.post('/send', (req, res) => {
   // create reusable transporter object using the default SMTP transport
