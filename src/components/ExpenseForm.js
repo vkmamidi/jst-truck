@@ -12,7 +12,8 @@ export default class ExpenseForm extends React.Component {
     super(props);
 
     this.state = {
-      img:'',
+      filename:props.expense ? props.expense.filename: [],
+      img:props.expense ? props.expense.img:[],
       avatar:'',
       isUploading:false,
       progress:0,
@@ -225,11 +226,19 @@ onFocusChange = ({ focused }) => {
 
 onFileChange =(e)=>{
     let file = e.target.files[0]
-  console.log(file)
-    this.setState(()=>({error:''}))
-  firebase.storage().ref().child(`files/${this.state.company}`).put(file).then((snapshot)=>{
-    console.log("file uploaded")
-  })
+  console.log(file.name)
+    this.setState((prevState)=>{
+      if(prevState.filename.includes(file.name)){
+       alert("file with this name already exists please upload with different name")
+        return {filename:prevState.filename}
+      }else{
+        firebase.storage().ref().child(`${this.state.company}/${file.name}`).put(file)
+        return {filename:prevState.filename.concat(file.name)}
+      }
+    
+    })
+    // console.log(this.state.filename)
+  
 
 }
 
@@ -237,6 +246,7 @@ onEmptyCompanyName = (e)=>{
   if(this.state.company===''){
     alert("enter company name before uploading files")
   }
+  
 }
 
 
@@ -244,9 +254,29 @@ onEmptyCompanyName = (e)=>{
 
 
 componentDidMount(){
-  let filename = firebase.storage().ref().child(`files/${this.state.company}`);
-  filename.getDownloadURL().then((url)=>{this.setState(()=>({img:url}))})
-  // console.log(this.state.img)
+  
+    this.state.filename.map((file)=>{
+    let filename = firebase.storage().ref().child(`${this.state.company}/${file}`);
+    filename.getDownloadURL().then((url)=>{
+      // this.state.img.filter((link)=>link!=url)
+      this.setState((prevState)=>{
+        if(prevState.img.includes(url)){
+          return {img:prevState.img}
+        }else{
+          return {img:prevState.img.concat(url)}
+        }
+      })
+      // console.log(this.state.img)
+    
+    })
+    // console.log(this.state.filename)
+  //   return(
+  //   <a key={file} href={this.state.img} download>{file}</a>
+    
+  // )
+  
+})
+  
 }
 
 
@@ -260,6 +290,8 @@ componentDidMount(){
     } else {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
+        img:this.state.img,
+        filename:this.state.filename,
         ana:this.state.ana,
         name:this.state.name,
         mm:this.state.mm,
@@ -307,7 +339,7 @@ componentDidMount(){
       // Details
       <div className='content-container'>
             <form  className='form_head' onSubmit = {this.onSubmit}>
-            <div className='form'>
+            <div className='form_regular'>
             <label>
             <select className="select__add" value = {this.state.ana} onChange={this.onAnaChange}>
             <option value='Ana' >ANA</option>
@@ -323,8 +355,7 @@ componentDidMount(){
           numberOfMonths={1}
           isOutsideRange={() => false}
         />
-      
-        {this.props.expense ?(<label>{this.state.img && <a href={this.state.img} download>Your file</a>} <input onClick={this.onEmptyCompanyName} className = 'button button__upload' type='file' onChange={this.onFileChange} id='file-name'/></label>) : <input onClick={this.onEmptyCompanyName} className='button button__logout' type='file' onChange={this.onFileChange} id='file-name' multiple/> }
+        
         </div>
             <div className='form'>
             <div>
@@ -525,6 +556,15 @@ componentDidMount(){
             </label>
             </div>
             </div>
+            </div>
+            <div className='form_regular'>
+            {this.state.img.map((url,index)=>{
+              return(
+                <a className='filename' key={this.state.filename[index]} href={url} download>{this.state.filename[index]}</a>
+              )
+            })}
+            
+           <input onClick={this.onEmptyCompanyName} className='button button__upload' type='file' onChange={this.onFileChange} id='file-name' multiple/>
             </div>
             <div>
              <label>

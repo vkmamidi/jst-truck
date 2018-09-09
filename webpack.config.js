@@ -45,6 +45,9 @@ module.exports = (env) => {
         })
       }]
     },
+    node:{
+      fs:'empty'
+    },
     plugins: [
       CSSExtract,
       new webpack.DefinePlugin({

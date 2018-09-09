@@ -45,7 +45,11 @@ button:disabled {
 .head__buttons{
   margin: $m-size;
 }
-
+.filename{
+  margin-right: $s-size;
+  padding: $s-size;
+  font-size: 14px;
+}
 .form{
   // border: 1px solid black;
   // margin: 0 0 0 15px;
@@ -59,6 +63,19 @@ margin-bottom: $s-size;
       flex-direction: row;
       margin-bottom: $s-size;
   }
+}
+
+.form_regular{
+  display: flex;
+  padding: $s-size 0;
+  flex-direction: column;
+  
+  margin-bottom: $s-size;
+  @media(min-width: $desktop-breakpoint){
+    flex-direction: row;
+    margin-bottom: $s-size;
+    flex-wrap: wrap;
+}
 }
 
 .form__irp{
