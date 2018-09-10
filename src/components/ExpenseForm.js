@@ -232,11 +232,16 @@ onFileChange =(e)=>{
        alert("file with this name already exists please upload with different name")
         return {filename:prevState.filename}
       }else{
-        firebase.storage().ref().child(`${this.state.company}/${file.name}`).put(file)
-        return {filename:prevState.filename.concat(file.name)}
+        firebase.storage().ref().child(`${this.state.company}/${file.name}`).put(file).then((snapshot)=>{
+          console.log("fileuploaded")
+          snapshot.ref.getDownloadURL().then((url)=>{
+            this.setState((prevState)=>({img:[...this.state.img,url],filename:prevState.filename.concat(file.name)}))
+          })
+        })
       }
     
     })
+    
     // console.log(this.state.filename)
   
 
@@ -255,28 +260,6 @@ onEmptyCompanyName = (e)=>{
 
 componentDidMount(){
   
-    this.state.filename.map((file)=>{
-    let filename = firebase.storage().ref().child(`${this.state.company}/${file}`);
-    filename.getDownloadURL().then((url)=>{
-      // this.state.img.filter((link)=>link!=url)
-      this.setState((prevState)=>{
-        if(prevState.img.includes(url)){
-          return {img:prevState.img}
-        }else{
-          return {img:prevState.img.concat(url)}
-        }
-      })
-      // console.log(this.state.img)
-    
-    })
-    // console.log(this.state.filename)
-  //   return(
-  //   <a key={file} href={this.state.img} download>{file}</a>
-    
-  // )
-  
-})
-  
 }
 
 
@@ -285,6 +268,7 @@ componentDidMount(){
   onSubmit = (e) => {
     e.preventDefault();
 
+    
     if (!this.state.name) {
       this.setState(() => ({ error: 'Please provide description and amount.' }));
     } else {
