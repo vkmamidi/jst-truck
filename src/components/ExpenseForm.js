@@ -228,6 +228,8 @@ onFileChange =(e)=>{
     let file = e.target.files[0]
   console.log(file.name)
     this.setState((prevState)=>{
+      if(prevState.filename!==undefined)
+      {
       if(prevState.filename.includes(file.name)){
        alert("file with this name already exists please upload with different name")
         return {filename:prevState.filename}
@@ -239,7 +241,15 @@ onFileChange =(e)=>{
           })
         })
       }
-    
+    }
+    else{
+      firebase.storage().ref().child(`${this.state.company}/${file.name}`).put(file).then((snapshot)=>{
+        console.log("fileuploaded")
+        snapshot.ref.getDownloadURL().then((url)=>{
+          this.setState((prevState)=>({img:[...this.state.img,url],filename:prevState.filename.concat(file.name)}))
+        })
+      })
+    }
     })
     
     // console.log(this.state.filename)
