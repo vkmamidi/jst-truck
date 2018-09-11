@@ -12,8 +12,8 @@ export default class ExpenseForm extends React.Component {
     super(props);
 
     this.state = {
-      filename:props.expense ? props.expense.filename: [],
-      img:props.expense ? props.expense.img:[],
+      filename:props.expense ? props.expense.filename: ['',],
+      img:props.expense ? props.expense.img:['',],
       avatar:'',
       isUploading:false,
       progress:0,
@@ -284,8 +284,8 @@ componentDidMount(){
     } else {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
-        img:this.state.img,
-        filename:this.state.filename,
+        img:this.state.img ,
+        filename:this.state.filename ,
         ana:this.state.ana,
         name:this.state.name,
         mm:this.state.mm,
@@ -553,7 +553,7 @@ componentDidMount(){
             </div>
             <div className='form_regular'>
             {this.state.img && this.state.img.map((url,index)=>{
-              
+              if(url!=='')
               return(
                 <a className='filename' key={this.state.filename[index]} href={url} download>{this.state.filename[index]}</a>
               )
