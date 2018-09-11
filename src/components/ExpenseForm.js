@@ -542,10 +542,12 @@ componentDidMount(){
             </div>
             </div>
             <div className='form_regular'>
-            {this.state.img.map((url,index)=>{
+            {this.state.img && this.state.img.map((url,index)=>{
+              
               return(
                 <a className='filename' key={this.state.filename[index]} href={url} download>{this.state.filename[index]}</a>
               )
+            
             })}
             
            <input onClick={this.onEmptyCompanyName} className='button button__upload' type='file' onChange={this.onFileChange} id='file-name' multiple/>

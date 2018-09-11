@@ -34,9 +34,9 @@ onEmailClick = async(e)=>{
         <div className='page-header'>
         <div className='content-container'>
         <div className='head'>
-        <div className = 'head__button'>
-        <Link className='button button__link' to="/create">Add Details</Link>
         
+        <Link className='button button__link' to="/create">Add Details</Link>
+        <div className = 'head__buttons'>
         <button className='button button__sms' onClick={this.onNumberClick}>Send SMS </button>
         <button className = 'button' onClick={this.onEmailClick}>Send Email</button>
         </div>
