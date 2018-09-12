@@ -47,10 +47,13 @@ button:disabled {
   display:flex;
   margin: $m-size;
 }
+
 .filename{
   margin-right: $s-size;
   padding: $s-size;
+  width: 100px;
   font-size: 14px;
+  // word-break: normal;
 }
 .form{
   // border: 1px solid black;

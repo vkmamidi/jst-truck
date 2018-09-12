@@ -1,9 +1,9 @@
 .text-input{
     border: 1px solid #cacccd;
-    height:55px;
-    width: 245px;
+    height:58px;
+    width: 255px;
     padding: $s-size;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 300;
 }
 
@@ -21,7 +21,10 @@
 }
 
 .text-input__email{
-    font-size: 1.1rem;
+    padding: 0;
+    vertical-align: middle;
+    font-size: 15px;
+
 }
 
 .select{

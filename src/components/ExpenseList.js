@@ -7,7 +7,7 @@ export const ExpenseList = (props) => (
   <div className='content-container'>
   <div className='list-header'>
   <div className='show-for-mobile'>Names</div>
-  <div className='show-for-desktop'>Name</div>
+  <div className='show-for-desktop'>Company Name</div>
   <div className='show-for-desktop'>Email</div>
   </div>
   
