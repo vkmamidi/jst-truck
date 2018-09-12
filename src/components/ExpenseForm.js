@@ -312,7 +312,7 @@ componentDidMount(){
         usdotpin:this.state.usdotpin,
         canumber:this.state.canumber,
         ifta:this.state.ifta,
-        requester:this.state.ifta,
+        requester:this.state.requester,
         numberoftrucks:this.state.numberoftrucks,
         bank:this.state.bank,
         account:this.state.account,
