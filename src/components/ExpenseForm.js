@@ -94,10 +94,7 @@ onEmailChange = (e)=>{
   const email = e.target.value
   this.setState(()=>({email}))
 }
-onNotesChange = (e)=>{
-  const notes = e.target.value
-  this.setState(()=>({notes}))
-}
+
 onSsnChange = (e)=>{
   const ssn = e.target.value
   this.setState(()=>({ssn}))

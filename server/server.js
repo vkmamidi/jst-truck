@@ -74,7 +74,7 @@ app.post('/sendsms',(req,res)=>{
     for(let i =0;i<end;i++){
         setTimeout(()=>{
             nexmo.message.sendSms(
-                process.env.CONFIG_NUMBER,req.body.numbers[i],'This is a reminder from JST Truck permits. Your subscription for the plates is expiring soon, Please contact us to renew your plates',{type:'unicode'},
+                process.env.CONFIG_NUMBER,req.body.numbers[i],req.body.text,{type:'unicode'},
                 (err,responseData)=>{
                     if (err) {
                         console.log(err);
@@ -82,7 +82,7 @@ app.post('/sendsms',(req,res)=>{
                         console.dir(responseData);
                       }
                 }
-           )},i*1500)
+           )},i*1800)
     }
 
 
@@ -141,7 +141,7 @@ app.post('/send', (req, res) => {
         to: `${req.body.email}`, // list of receivers
         subject: 'Reminder From JST Truck permits', // Subject line
         text: 'Postcard', // plain text body
-        html: '<b>Your subscription for the plates is expiring soon, please contact us to renew your plates</b>' // html body
+        html: req.body.text // html body
     };
 
     // send mail with defined transport object

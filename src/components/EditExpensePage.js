@@ -5,6 +5,10 @@ import { startEditDetail,startRemoveDetail} from '../actions/expenses';
 import axios from 'axios';
 
 export class EditExpensePage extends React.Component {
+
+  state = {
+    text:''
+  }
   onSubmit = (expense) => {
     this.props.startEditDetail(this.props.expense.id,expense)
     this.props.history.push('/');
@@ -18,6 +22,7 @@ export class EditExpensePage extends React.Component {
     e.preventDefault()
     await axios.post("/sendsms",{
       numbers:number.concat(this.props.expense.phone),
+      text:this.state.text
     }).then(function (response) {
       console.log(response);
     })
@@ -29,12 +34,17 @@ export class EditExpensePage extends React.Component {
     e.preventDefault()
     await axios.post("/send",{
       email:this.props.expense.email,
+      text:this.state.text
     }).then(function (response) {
       console.log(response);
     })
     .catch(function (error) {
       console.log(error.response);
     });
+  }
+  onTextChange = (e)=>{
+    const text = e.target.value
+    this.setState(()=>({text}))
   }
   render() {
     return (
@@ -44,6 +54,7 @@ export class EditExpensePage extends React.Component {
       <div className='head'>
       <h1>Update the Information</h1>
       <div className='head__buttons'>
+      <textarea className='text-box' value={this.state.text} onChange ={this.onTextChange}/>
       <button className='button button__sms' onClick={this.onNumberClick}>Send SMS </button>
       <button className = 'button' onClick={this.onEmailClick}>Send Email</button>
       </div>
