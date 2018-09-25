@@ -1,0 +1,6 @@
+ #app1{
+       background-image: url('images/bg2.jpg'); 
+       background-color: #000;
+       background-size: cover; 
+       background-position: top center;
+     }

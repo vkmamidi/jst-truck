@@ -7,7 +7,8 @@ import axios from 'axios';
 export class EditExpensePage extends React.Component {
 
   state = {
-    text:''
+    text:'',
+    msg:''
   }
   onSubmit = (expense) => {
     this.props.startEditDetail(this.props.expense.id,expense)
@@ -20,11 +21,12 @@ export class EditExpensePage extends React.Component {
   onNumberClick = async(e)=>{
     const number = []
     e.preventDefault()
+    this.setState(()=>({msg:'your messages have been sent'}));
     await axios.post("/sendsms",{
       numbers:number.concat(this.props.expense.phone),
       text:this.state.text
     }).then(function (response) {
-      console.log(response);
+     
     })
     .catch(function (error) {
       console.log(error.response);
@@ -32,11 +34,11 @@ export class EditExpensePage extends React.Component {
   }
   onEmailClick = async(e)=>{
     e.preventDefault()
+    this.setState(()=>({msg:'your Emails have been sent'}));
     await axios.post("/send",{
       email:this.props.expense.email,
       text:this.state.text
     }).then(function (response) {
-      console.log(response);
     })
     .catch(function (error) {
       console.log(error.response);
@@ -55,10 +57,11 @@ export class EditExpensePage extends React.Component {
       <h1>Update the Information</h1>
       <div className='head__buttons'>
       <textarea className='text-box' value={this.state.text} onChange ={this.onTextChange}/>
-      <button className='button button__sms' onClick={this.onNumberClick}>Send SMS </button>
-      <button className = 'button' onClick={this.onEmailClick}>Send Email</button>
+      <button id='app' className='button button__sms' onClick={this.onNumberClick}>Send SMS </button>
+      <button id='app' className = 'button' onClick={this.onEmailClick}>Send Email</button>
       </div>
       </div>
+      <h1>{this.state.msg}</h1>
       </div>
       </div>
         <ExpenseForm

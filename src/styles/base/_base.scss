@@ -1,5 +1,6 @@
 html {
   font-size: 62.5%;
+  
 }
 
 *{
@@ -11,6 +12,12 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: $m-size;
   line-height: 1.6;
+  
+  
+}
+
+label{
+  color: #e9fa01;
 }
 
 button {
@@ -54,6 +61,7 @@ button:disabled {
   width: 100px;
   font-size: 14px;
   // word-break: normal;
+  color: black;
 }
 .form{
   // border: 1px solid black;
@@ -100,6 +108,11 @@ margin:0;
 
 .text-box{
   margin-right: 10px;
+}
+
+.notes{
+  margin-left: $s-size;
+  color: #e9fa01;
 }
 
 // table{

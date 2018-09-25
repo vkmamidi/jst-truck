@@ -207,6 +207,11 @@ onDateChange = (createdAt) => {
   }
 };
 
+onNotesChange = (e)=>{
+  const notes = e.target.value
+  this.setState(()=>({notes}))
+}
+
 handleUploadStart = () => this.setState({isUploading: true, progress: 0});
 handleProgress = (progress) => this.setState({progress});
 handleUploadError = (error) => {
@@ -346,7 +351,9 @@ componentDidMount(){
           numberOfMonths={1}
           isOutsideRange={() => false}
         />
-        
+        <p className='notes'>Notes:</p>
+             <textarea className='textarea__notes' value={this.state.notes} onChange ={this.onNotesChange}/>
+             
         </div>
             <div className='form'>
             <div>
@@ -559,13 +566,7 @@ componentDidMount(){
             
            <input onClick={this.onEmptyCompanyName} className='button button__upload' type='file' onChange={this.onFileChange} id='file-name' multiple/>
             </div>
-            <div>
-             <label>
-              Notes:
-             <br/>
-             <textarea className='textarea__notes' value={this.state.notes} onChange ={this.onNotesChange}/>
-             </label>
-            </div>
+            
             {this.props.expense ? <button className='button'>Update Details</button> : <button className='button'>Add Details</button>} 
             </form>
             </div>

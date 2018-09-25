@@ -8,15 +8,17 @@ export class ExpenseSummary extends React.Component{
 
   state = {
     text:'',
+    msg:''
   }
 
     onNumberClick = async(e)=>{
         e.preventDefault()
+        this.setState(()=>({msg:'your messages have been sent'}))
         await axios.post("/sendsms",{
           numbers:this.props.expenses.map((expense)=>expense.phone),
           text:this.state.text
         }).then(function (response) {
-          console.log(response);
+          
         })
         .catch(function (error) {
           console.log(error.response);
@@ -25,11 +27,11 @@ export class ExpenseSummary extends React.Component{
 
 onEmailClick = async(e)=>{
     e.preventDefault()
+    this.setState(()=>({msg:'Your Emails have been sent'}))
     await axios.post("/send",{
       email:this.props.expenses.map((expense)=>expense.email),
       text:this.state.text
     }).then(function (response) {
-      console.log(response);
     })
     .catch(function (error) {
       console.log(error.response);
@@ -53,6 +55,7 @@ onEmailClick = async(e)=>{
         <button className = 'button' onClick={this.onEmailClick}>Send Email</button>
         </div>
         </div>
+        {this.state.msg}
         </div>
         </div>
     )}

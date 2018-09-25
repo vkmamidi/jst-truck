@@ -5,6 +5,12 @@
     padding: $s-size;
     font-size: 1.5rem;
     font-weight: 300;
+    border-radius: 18px;
+}
+.text-input:focus{
+    outline: none;  
+    box-shadow: 0 0 5px #e61cf4;
+    border: 1px solid #e61cf4
 }
 
 .text-input__filters{
@@ -48,11 +54,11 @@
 .textarea__notes{
     @extend .text-input;
     width: auto;
-    height: 105px;
+    height: 60px;
     margin-bottom: $s-size;
     @media(min-width: $desktop-breakpoint){
-        width: 868px;
-        height: 105px;
+        width: 400px;
+        height: 60px;
         margin-bottom: $s-size;
         }
 }

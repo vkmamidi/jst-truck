@@ -6,7 +6,7 @@ const filtersReducerDefaultState = {
   text: '',
   sortBy: 'date',
   irpMonth:'',
-  startDate: moment().startOf('month'),
+  startDate: moment('09-01-2018','MM-DD-YYYY'),
   endDate: moment().endOf('month')
 };
 

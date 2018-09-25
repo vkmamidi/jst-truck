@@ -4,11 +4,15 @@
     color: white;
     display: inline-block;
     border: none;
-    background:$blue;
+    background:#f9820c;
     line-height: 1;
     padding: $s-size;
     text-decoration: none;
     margin-bottom: $s-size;
+}
+.button:hover{
+    box-shadow: 0 0 10px #011afa;
+    // border: 1px solid #e61cf4
 }
 
 .button__logout{
@@ -33,6 +37,6 @@
 }
 
 .button__remove{
-    background: #888888;
+    background: #f90c0c;
     float: right;
 }
