@@ -106,7 +106,7 @@ app.post('/send', (req, res) => {
     // setup email data with unicode symbols
     let mailOptions = {
         from: process.env.CONFIG_USER_NAME, // sender address
-        to: `${req.body.email}`, // list of receivers
+        bcc: `${req.body.email}`, // list of receivers
         subject: 'Reminder From JST Truck permits', // Subject line
         text: 'Postcard', // plain text body
         html: req.body.text // html body
