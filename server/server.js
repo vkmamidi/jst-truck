@@ -11,8 +11,8 @@ const port = process.env.PORT || 3000;
 const Nexmo = require('nexmo');
 const xoauth2 = require('xoauth2');
 const nexmo = new Nexmo({
-    apiKey:'786655c2',
-    apiSecret:'1IiLtEpSMuVv8vf4'
+    apiKey:process.env.CONFIG_APIKEY,
+    apiSecret:process.env.CONFIG_APISECRET
 });
 //   apiKey: process.env.CONFIG_APIKEY,
 //   apiSecret: process.env.CONFIG_APISECRET
