@@ -45,7 +45,7 @@ export default class ExpenseForm extends React.Component {
              canumber:props.expense ? props.expense.canumber:'',
              ifta:props.expense ? props.expense.ifta:'',
             requester:props.expense ? props.expense.requester:'',
-            numberoftrucks:props.expense ? props.expense.numberoftrucks:'',
+            numberoftrucks:props.expense ? props.expense.numberoftrucks:'0',
             bank:props.expense ? props.expense.bank:'',
             account:props.expense ? props.expense.account:'',
             routing:props.expense ? props.expense.routing:'',
@@ -504,7 +504,7 @@ componentDidMount(){
             <label>
             Number of trucks:
             <br/>
-            <input className="text-input" type='text' value={this.state.numberoftrucks} onChange ={this.onTruckChange}/>
+            <input className="text-input" type='number' value={this.state.numberoftrucks} onChange ={this.onTruckChange}/>
             </label>
             </div>
             <div className='form'>

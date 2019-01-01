@@ -9,6 +9,7 @@ const app = express();
 const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3000;
 const Nexmo = require('nexmo');
+const fs = require('fs')
 const xoauth2 = require('xoauth2');
 const nexmo = new Nexmo({
     apiKey:process.env.CONFIG_APIKEY,
@@ -27,9 +28,10 @@ var aws = require('aws-sdk');
 var ses = new aws.SES({apiVersion: '2010-12-01'});
 
 app.use(express.static(publicPath));
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit:'50mb'}))
 app.use(bodyParser.urlencoded({
-   extended: false
+   extended: true,
+   limit:'50mb'
 }));
 app.use((request, response, next) => {
   response.header("Access-Control-Allow-Origin", "*");
@@ -94,6 +96,7 @@ app.post('/send', (req, res) => {
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
+        secure:false,
         auth: {
         user: process.env.CONFIG_USER_NAME,
         pass: process.env.CONFIG_PASSWORD
@@ -105,14 +108,16 @@ app.post('/send', (req, res) => {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: process.env.CONFIG_USER_NAME, // sender address
+        from: 'jsttruckpermits@gmail.com', // sender address
         bcc: `${req.body.email}`, // list of receivers
         subject: 'Reminder From JST Truck permits', // Subject line
         text: 'Postcard', // plain text body
+        // attachments:[{'filename': `jst.pdf`,content:new Buffer(req.body.file,'utf-8'),content}],
         html: req.body.text // html body
     };
 
     // send mail with defined transport object
+        
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             return console.log(error);
