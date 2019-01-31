@@ -7,6 +7,11 @@ export const setIrpMonthFilter = (irpMonth = '')=>({
   type: 'SORT_BY_IRPMONTH',
   irpMonth
 })
+
+export const setDotFilter = (dot = '')=>({
+  type:'SORT_BY_DOT',
+  dot
+})
 // SORT_BY_DATE
 export const sortByDate = () => ({
   type: 'SORT_BY_DATE'

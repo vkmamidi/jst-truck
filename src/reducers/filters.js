@@ -6,6 +6,7 @@ const filtersReducerDefaultState = {
   text: '',
   sortBy: 'date',
   irpMonth:'',
+  dot:'',
   startDate: moment('09-01-2018','MM-DD-YYYY'),
   endDate: moment().endOf('month')
 };
@@ -42,6 +43,11 @@ export default (state = filtersReducerDefaultState, action) => {
       return {
         ...state,
         irpMonth: action.irpMonth
+      }
+      case "SORT_BY_DOT":
+      return{
+        ...state,
+        dot:action.dot
       }
     default:
       return state;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
-import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, setIrpMonthFilter } from '../actions/filters';
+import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, setIrpMonthFilter, setDotFilter } from '../actions/filters';
 
 export class ExpenseListFilters extends React.Component {
   state = {
@@ -27,6 +27,9 @@ export class ExpenseListFilters extends React.Component {
       this.props.sortByAmount();
     }
   };
+  onDotChange = (e)=>{
+    this.props.setDotFilter(e.target.value);
+  }
   render() {
     return (
       <div className='content-container'>
@@ -42,8 +45,17 @@ export class ExpenseListFilters extends React.Component {
         </div>
         <div className='input-group__item'>
         <input
+          type='text'
+          className="text-input text-input__filters__dot"
+          value={this.props.filters.dot}
+          onChange={this.onDotChange}
+          placeholder="Search USDot"
+          />
+        </div>
+        <div className='input-group__item'>
+        <input
           type="text"
-          className="text-input text-input__filters"
+          className="text-input text-input__filters__dot"
           value={this.props.filters.irpMonth}
           onChange={this.onMonthChange}
           placeholder="Enter IRP MM"
@@ -77,7 +89,8 @@ const mapDispatchToProps = (dispatch) => ({
   sortByAmount: () => dispatch(sortByAmount()),
   setIrpMonthFilter:(irpMonth)=> dispatch(setIrpMonthFilter(irpMonth)),
   setStartDate: (startDate) => dispatch(setStartDate(startDate)),
-  setEndDate: (endDate) => dispatch(setEndDate(endDate))
+  setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+  setDotFilter: (dot) => dispatch(setDotFilter(dot))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
