@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
-import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, setIrpMonthFilter, setDotFilter } from '../actions/filters';
+import { setTextFilter,setAdvanceFilter ,sortByDate, sortByAmount, setStartDate, setEndDate, setIrpMonthFilter, setDotFilter } from '../actions/filters';
 
 export class ExpenseListFilters extends React.Component {
   state = {
@@ -30,6 +30,9 @@ export class ExpenseListFilters extends React.Component {
   onDotChange = (e)=>{
     this.props.setDotFilter(e.target.value);
   }
+  onAdvanceChange = (e)=>{
+    this.props.setAdvanceFilter(e.target.value);
+  }
   render() {
     return (
       <div className='content-container'>
@@ -37,10 +40,19 @@ export class ExpenseListFilters extends React.Component {
         <div className='input-group__item'>
         <input
           type="text"
-          className="text-input text-input__filters"
+          className="text-input text-input__filters__dot"
           value={this.props.filters.text}
           onChange={this.onTextChange}
           placeholder="Search Company"
+        />
+        </div>
+        <div className='input-group__item'>
+        <input
+          type="text"
+          className="text-input text-input__filters__dot"
+          value={this.props.filters.advancemm}
+          onChange={this.onAdvanceChange}
+          placeholder="Advance MM"
         />
         </div>
         <div className='input-group__item'>
@@ -90,7 +102,8 @@ const mapDispatchToProps = (dispatch) => ({
   setIrpMonthFilter:(irpMonth)=> dispatch(setIrpMonthFilter(irpMonth)),
   setStartDate: (startDate) => dispatch(setStartDate(startDate)),
   setEndDate: (endDate) => dispatch(setEndDate(endDate)),
-  setDotFilter: (dot) => dispatch(setDotFilter(dot))
+  setDotFilter: (dot) => dispatch(setDotFilter(dot)),
+  setAdvanceFilter: (advancemm) => dispatch(setAdvanceFilter(advancemm)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);

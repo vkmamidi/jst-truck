@@ -7,6 +7,7 @@ const filtersReducerDefaultState = {
   sortBy: 'date',
   irpMonth:'',
   dot:'',
+  advancemm:'',
   startDate: moment('09-01-2018','MM-DD-YYYY'),
   endDate: moment().endOf('month')
 };
@@ -48,6 +49,11 @@ export default (state = filtersReducerDefaultState, action) => {
       return{
         ...state,
         dot:action.dot
+      }
+      case "SORT_BY_ADVANCEMM":
+      return{
+        ...state,
+        advancemm:action.advancemm
       }
     default:
       return state;

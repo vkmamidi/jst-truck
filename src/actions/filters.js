@@ -12,6 +12,11 @@ export const setDotFilter = (dot = '')=>({
   type:'SORT_BY_DOT',
   dot
 })
+
+export const setAdvanceFilter = (advancemm = '') =>({
+  type:'SORT_BY_ADVANCEMM',
+  advancemm
+})
 // SORT_BY_DATE
 export const sortByDate = () => ({
   type: 'SORT_BY_DATE'
@@ -33,3 +38,4 @@ export const setEndDate = (endDate) => ({
   type: 'SET_END_DATE',
   endDate
 });
+

@@ -2,12 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
-
+// import brand from '../../public/images/bg.jpg'
 export const Header = (props) => (
   <header className='header'>
   <div className='content-container'>
   <div className='header__content'>
     <NavLink className="header__title" to="/dashboard">
+    
     <h1>JST TRUCK PERMITS</h1>
     </NavLink>
     <button className="button button__logout" onClick={props.startLogout}>Logout</button>
