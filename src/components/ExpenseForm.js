@@ -12,6 +12,9 @@ export default class ExpenseForm extends React.Component {
     super(props);
 
     this.state = {
+      advanceMonth:props.expense ? props.expense.advanceMonth : '',
+      advanceYear: props.expense ? props.expense.advanceYear : '',
+      advancePaid: props.expense ? props.expense.advancePaid : 'No',
       filename:props.expense ? props.expense.filename: ['',],
       img:props.expense ? props.expense.img:['',],
       avatar:'',
@@ -59,7 +62,19 @@ export default class ExpenseForm extends React.Component {
   }
 
   // Details
+onAdvanceChange = (e)=>{
+  const advancePaid = e.target.value
+  this.setState(()=>({advancePaid}))
+}
 
+onAdvanceMonthChange = (e)=>{
+  const advanceMonth = e.target.value
+  this.setState(()=>({advanceMonth}))
+}
+onAdvanceYearChange = (e)=>{
+  const advanceYear = e.target.value
+  this.setState(()=>({advanceYear}))
+}
   onNameChange = (e)=>{
     const name = e.target.value
     this.setState(()=>({name}))
@@ -286,6 +301,9 @@ componentDidMount(){
     } else {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
+        advanceMonth:this.state.advanceMonth,
+        advanceYear:this.state.advanceYear,
+        advancePaid:this.state.advancePaid,
         img:this.state.img ,
         filename:this.state.filename ,
         ana:this.state.ana,
@@ -355,6 +373,24 @@ componentDidMount(){
              <textarea className='textarea__notes' value={this.state.notes} onChange ={this.onNotesChange}/>
              
         </div>
+        <div className='form_regular'>
+            <label>
+            Advance Paid:   
+            <br/>
+            <select className="select__add" value = {this.state.advancePaid} onChange={this.onAdvanceChange}>
+            <option value='No' >No</option>
+            <option value='Yes' >Yes</option>
+            </select>
+            </label>
+            <div className="form__irp">
+            <label className="paidtill"> 
+            Paid Till:
+            <br/>
+            <input className="text-input text-input__advancemonth" type='text' value={this.state.advanceMonth} onChange ={this.onAdvanceMonthChange} placeholder="Month"/>
+            <input className="text-input text-input__advanceyear" type='text' value={this.state.advanceYear} onChange ={this.onAdvanceYearChange} placeholder="Year"/>
+            </label>
+            </div>
+            </div>
             <div className='form'>
             <div>
             <label>

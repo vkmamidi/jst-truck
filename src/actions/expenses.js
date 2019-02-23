@@ -11,8 +11,8 @@ const addDetails = (detail)=>({
 const startAddDetails = (detailsData={})=>{
   return(dispatch,getState)=>{
       const uid = getState().auth.uid
-      const {filename=['',],img=['',],ana='ANA',mm='',yy='',capoa='',nmpoa='',cardtype='',cardname='',cardnum='',account='',routing='',exp='',cvv='',bank='',name = '', company='', phone = 0, mcnum='',user='',password='', createdAt = 0, address='', email='', notes = '',ssn='',nmwdt='',federalId = '',kyu='', irp='',nyhut = '',usdot = '', origon='',usdotpin = '', canumber = '', ifta='',requester = '', numberoftrucks='0'} = detailsData;
-      const detail = {cardtype,img,capoa,mm,yy,nmpoa,filename, cardname, cardnum, account, routing,exp,cvv,bank ,ana,name , company, phone, mcnum,user,password, createdAt, address, email, notes ,ssn,nmwdt,federalId,kyu, irp,nyhut ,usdot , origon,usdotpin, canumber, ifta,requester, numberoftrucks}
+      const {filename=['',],img=['',],ana='ANA',advancePaid='No',advanceMonth='',advanceYear='',mm='',yy='',capoa='',nmpoa='',cardtype='',cardname='',cardnum='',account='',routing='',exp='',cvv='',bank='',name = '', company='', phone = 0, mcnum='',user='',password='', createdAt = 0, address='', email='', notes = '',ssn='',nmwdt='',federalId = '',kyu='', irp='',nyhut = '',usdot = '', origon='',usdotpin = '', canumber = '', ifta='',requester = '', numberoftrucks='0'} = detailsData;
+      const detail = {cardtype,img,capoa,mm,yy,nmpoa,filename,advanceMonth,advancePaid,advanceYear, cardname, cardnum, account, routing,exp,cvv,bank ,ana,name , company, phone, mcnum,user,password, createdAt, address, email, notes ,ssn,nmwdt,federalId,kyu, irp,nyhut ,usdot , origon,usdotpin, canumber, ifta,requester, numberoftrucks}
   
   database.ref(`users/${uid}/details`).push(detail).then((ref)=>{
       dispatch(addDetails({
