@@ -8,6 +8,7 @@ const filtersReducerDefaultState = {
   irpMonth:'',
   dot:'',
   advancemm:'',
+  advanceyear:'',
   startDate: moment('09-01-2018','MM-DD-YYYY'),
   endDate: moment().endOf('month')
 };
@@ -54,6 +55,11 @@ export default (state = filtersReducerDefaultState, action) => {
       return{
         ...state,
         advancemm:action.advancemm
+      }
+      case "SORT_BY_ADVANCEYEAR":
+      return{
+        ...state,
+        advanceyear:action.advanceyear
       }
     default:
       return state;

@@ -5,6 +5,7 @@
     @media(min-width: $desktop-breakpoint){
         flex-direction: row;
         margin-bottom: $l-size;
+        flex-wrap: wrap;
     }
 }
 
@@ -12,6 +13,6 @@
     margin-bottom: $s-size;
     
     @media(min-width: $desktop-breakpoint){
-        margin: 0 $s-size 0 0;
+        margin: 0 $s-size 20px 0;
     }
 }

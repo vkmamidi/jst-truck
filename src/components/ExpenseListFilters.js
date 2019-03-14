@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
-import { setTextFilter,setAdvanceFilter ,sortByDate, sortByAmount, setStartDate, setEndDate, setIrpMonthFilter, setDotFilter } from '../actions/filters';
+import { setTextFilter,setAdvanceFilter,setAdvanceyearFilter ,sortByDate, sortByAmount, setStartDate, setEndDate, setIrpMonthFilter, setDotFilter } from '../actions/filters';
 
 export class ExpenseListFilters extends React.Component {
   state = {
@@ -33,9 +33,15 @@ export class ExpenseListFilters extends React.Component {
   onAdvanceChange = (e)=>{
     this.props.setAdvanceFilter(e.target.value);
   }
+  onAdvanceyearChange = (e)=>{
+    this.props.setAdvanceYearFilter(e.target.value);
+  }
   render() {
     return (
       <div className='content-container'>
+      <div>
+      <p style={{color:"white",fontWeight:"700",fontSize:"18px"}}><u>Search By:-</u></p>
+      </div>
         <div className='input-group'>
         <div className='input-group__item'>
         <input
@@ -52,7 +58,16 @@ export class ExpenseListFilters extends React.Component {
           className="text-input text-input__filters__dot"
           value={this.props.filters.advancemm}
           onChange={this.onAdvanceChange}
-          placeholder="Advance MM"
+          placeholder="Advance Month"
+        />
+        </div>
+        <div className='input-group__item'>
+        <input
+          type="text"
+          className="text-input text-input__filters__dot"
+          value={this.props.filters.advanceYear}
+          onChange={this.onAdvanceyearChange}
+          placeholder="Advance Year"
         />
         </div>
         <div className='input-group__item'>
@@ -104,6 +119,7 @@ const mapDispatchToProps = (dispatch) => ({
   setEndDate: (endDate) => dispatch(setEndDate(endDate)),
   setDotFilter: (dot) => dispatch(setDotFilter(dot)),
   setAdvanceFilter: (advancemm) => dispatch(setAdvanceFilter(advancemm)),
+  setAdvanceYearFilter: (advanceYear) => dispatch(setAdvanceyearFilter(advanceYear)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);

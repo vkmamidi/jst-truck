@@ -78,7 +78,7 @@ onEmailClick = async(e)=>{
          
         </div>
         </div>
-        <h3>Number of Trucks:{this.state.truck.reduce((total,num)=>total + num)}       Number of Companies:{this.props.numofcompanies}</h3>
+        <h3>Number of Trucks:{this.state.truck.length > 1 ? this.state.truck.reduce((total,num)=>total + num): 0}       Number of Companies:{this.props.numofcompanies}</h3>
 
         <p>{this.state.msg}</p>
         </div>
