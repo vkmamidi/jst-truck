@@ -21,6 +21,11 @@ export const setAdvanceyearFilter = (advanceyear = '') => ({
   type:"SORT_BY_ADVANCEYEAR",
   advanceyear
 })
+
+export const sortByCompanyType = (comtype='')=>({
+  type:"SORT_BY_COMPANYTYPE",
+  comtype
+})
 // SORT_BY_DATE
 export const sortByDate = () => ({
   type: 'SORT_BY_DATE'

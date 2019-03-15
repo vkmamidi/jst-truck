@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
-import { setTextFilter,setAdvanceFilter,setAdvanceyearFilter ,sortByDate, sortByAmount, setStartDate, setEndDate, setIrpMonthFilter, setDotFilter } from '../actions/filters';
+import { setTextFilter,setAdvanceFilter,setAdvanceyearFilter ,sortByDate, sortByAmount, setStartDate, setEndDate, setIrpMonthFilter, setDotFilter, sortByCompanyType } from '../actions/filters';
 
 export class ExpenseListFilters extends React.Component {
   state = {
-    calendarFocused: null
+    calendarFocused: null,
+    selected:''
   };
   onDatesChange = ({ startDate, endDate }) => {
     this.props.setStartDate(startDate);
@@ -35,6 +36,11 @@ export class ExpenseListFilters extends React.Component {
   }
   onAdvanceyearChange = (e)=>{
     this.props.setAdvanceYearFilter(e.target.value);
+  }
+  oncompanychange = (e)=>{
+    const selected = e.target.value;
+    this.setState(()=>({selected}))
+    this.props.sortByCompanytype(selected);
   }
   render() {
     return (
@@ -89,6 +95,13 @@ export class ExpenseListFilters extends React.Component {
         />
         </div>
         <div className='input-group__item'>
+        <select className='text-input text-input__filters__dot' onChange={this.oncompanychange} value={this.state.selected}>
+        <option value="">---Select an Option---</option>
+        <option value="DBA">DBA</option>
+        <option value="INC">INC</option>
+        </select>
+        </div>
+        <div className='input-group__item'>
         <DateRangePicker
           startDate={this.props.filters.startDate}
           endDate={this.props.filters.endDate}
@@ -120,6 +133,7 @@ const mapDispatchToProps = (dispatch) => ({
   setDotFilter: (dot) => dispatch(setDotFilter(dot)),
   setAdvanceFilter: (advancemm) => dispatch(setAdvanceFilter(advancemm)),
   setAdvanceYearFilter: (advanceYear) => dispatch(setAdvanceyearFilter(advanceYear)),
+  sortByCompanytype:(comType)=> dispatch(sortByCompanyType(comType))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);

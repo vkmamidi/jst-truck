@@ -9,6 +9,7 @@ const filtersReducerDefaultState = {
   dot:'',
   advancemm:'',
   advanceyear:'',
+  comtype:'',
   startDate: moment('09-01-2018','MM-DD-YYYY'),
   endDate: moment().endOf('month')
 };
@@ -60,6 +61,11 @@ export default (state = filtersReducerDefaultState, action) => {
       return{
         ...state,
         advanceyear:action.advanceyear
+      }
+      case "SORT_BY_COMPANYTYPE":
+      return{
+        ...state,
+        comtype:action.comtype
       }
     default:
       return state;

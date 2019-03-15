@@ -15,6 +15,7 @@ export default class ExpenseForm extends React.Component {
       advanceMonth:props.expense ? props.expense.advanceMonth : '',
       advanceYear: props.expense ? props.expense.advanceYear : '',
       advancePaid: props.expense ? props.expense.advancePaid : 'No',
+      companyType: props.expense ? props.expense.companyType : 'INC',
       filename:props.expense ? props.expense.filename: ['',],
       img:props.expense ? props.expense.img:['',],
       avatar:'',
@@ -65,6 +66,11 @@ export default class ExpenseForm extends React.Component {
 onAdvanceChange = (e)=>{
   const advancePaid = e.target.value
   this.setState(()=>({advancePaid}))
+}
+
+onCompanyTypeChange = (e)=>{
+  const companyType = e.target.value
+  this.setState(()=>({companyType}))
 }
 
 onAdvanceMonthChange = (e)=>{
@@ -342,6 +348,7 @@ componentDidMount(){
         cardname:this.state.cardname,
         exp:this.state.exp,
         cvv:this.state.cvv,
+        companyType:this.state.companyType
 
       
       });
@@ -390,18 +397,26 @@ componentDidMount(){
             <input className="text-input text-input__advanceyear" type='text' value={this.state.advanceYear} onChange ={this.onAdvanceYearChange} placeholder="Year"/>
             </label>
             </div>
+            <label>
+            Company Type:   
+            <br/>
+            <select className="select__add" value = {this.state.companyType} onChange={this.onCompanyTypeChange}>
+            <option value='INC' >INC</option>
+            <option value='DBA' >DBA</option>
+            </select>
+            </label>
             </div>
             <div className='form'>
             <div>
             <label>
-            Name:
+            {this.state.companyType==="DBA" ? <span>Legal Name</span> : <span>Name</span>}
             <br/>
             <input className="text-input" type='text' value={this.state.name} onChange ={this.onNameChange} autoFocus />
             </label>
             </div>
             <div>
             <label>
-            Company Name:
+            {this.state.companyType!=="DBA" ? <span>Company Name</span> : <span>DBA</span>}
             <br/>
             <input className="text-input" type='text' value={this.state.company} onChange ={this.onCompanyChange}/>
             </label>
